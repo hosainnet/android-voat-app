@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.hosain.voat">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".VoatApp"
         android:allowBackup="true"
