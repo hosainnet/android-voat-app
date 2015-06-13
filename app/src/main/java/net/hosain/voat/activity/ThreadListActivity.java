@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
 
 import javax.inject.Inject;
+
+import timber.log.Timber;
 
 
 /**
@@ -45,7 +46,7 @@ public class ThreadListActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_list);
         VoatApp.component.inject(this);
-        Log.d("ThreadListActivity", context.getPackageName());
+        Timber.d(context.getPackageName());
 
         if (findViewById(R.id.thread_detail_container) != null) {
             // The detail container view will be present only in the
