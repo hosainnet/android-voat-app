@@ -4,10 +4,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import net.hosain.voat.VoatApp;
+import net.hosain.voat.data.DataEntity;
+import net.hosain.voat.data.Subverse;
 import net.hosain.voat.dummy.DummyContent;
+import net.hosain.voat.service.ApiService;
+
+import javax.inject.Inject;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import timber.log.Timber;
 
 /**
  * A list fragment representing a list of Threads. This fragment
@@ -19,6 +29,9 @@ import net.hosain.voat.dummy.DummyContent;
  * interface.
  */
 public class ThreadListFragment extends ListFragment {
+
+    @Inject
+    ApiService apiService;
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -69,13 +82,32 @@ public class ThreadListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VoatApp.component.inject(this);
+        getThreads("all");
 
-        // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
+    }
+
+    private void getThreads(String subverse) {
+        apiService.listThreads(subverse, new Callback<Subverse>() {
+
+            @Override
+            public void success(Subverse subverse, Response response) {
+
+                setListAdapter(new ThreadListAdapter<DataEntity>(
+                        getActivity(),
+                        android.R.layout.simple_list_item_activated_1,
+                        android.R.id.text1,
+                        subverse.getData()));
+                Timber.d("Success!");
+                Timber.d("Threads size " + subverse.getData().size());
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Timber.d("Fail!!");
+                Timber.e(error.getMessage());
+            }
+        });
     }
 
     @Override

@@ -138,4 +138,9 @@ public class DataEntity {
     public int getViews() {
         return views;
     }
+
+    @Override
+    public String toString() {
+        return title;
+    }
 }

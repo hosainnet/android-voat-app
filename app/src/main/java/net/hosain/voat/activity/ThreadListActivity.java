@@ -6,15 +6,6 @@ import android.support.v4.app.FragmentActivity;
 
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
-import net.hosain.voat.data.Subverse;
-import net.hosain.voat.service.ApiService;
-
-import javax.inject.Inject;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import timber.log.Timber;
 
 
 /**
@@ -36,8 +27,6 @@ import timber.log.Timber;
 public class ThreadListActivity extends FragmentActivity
         implements ThreadListFragment.Callbacks {
 
-    @Inject
-    ApiService apiService;
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -50,7 +39,6 @@ public class ThreadListActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_list);
         VoatApp.component.inject(this);
-        getThreads("all");
 
         if (findViewById(R.id.thread_detail_container) != null) {
             // The detail container view will be present only in the
@@ -96,20 +84,5 @@ public class ThreadListActivity extends FragmentActivity
         }
     }
 
-    private void getThreads(String subverse) {
-        apiService.listThreads(subverse, new Callback<Subverse>() {
 
-            @Override
-            public void success(Subverse subverse, Response response) {
-                Timber.d("Success!");
-                Timber.d("Threads size " + subverse.getData().size());
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Timber.d("Fail!!");
-                Timber.e(error.getMessage());
-            }
-        });
-    }
 }
