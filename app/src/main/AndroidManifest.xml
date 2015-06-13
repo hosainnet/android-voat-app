@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ThreadListActivity"
+            android:name=".activity.ThreadListActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,12 +18,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ThreadDetailActivity"
+            android:name=".activity.ThreadDetailActivity"
             android:label="@string/title_thread_detail"
-            android:parentActivityName=".ThreadListActivity">
+            android:parentActivityName=".activity.ThreadListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ThreadListActivity" />
+                android:value=".activity.ThreadListActivity" />
         </activity>
     </application>
 
