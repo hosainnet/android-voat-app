@@ -1,10 +1,15 @@
 package net.hosain.voat.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import net.hosain.voat.R;
+import net.hosain.voat.VoatApp;
+
+import javax.inject.Inject;
 
 
 /**
@@ -26,6 +31,9 @@ import net.hosain.voat.R;
 public class ThreadListActivity extends FragmentActivity
         implements ThreadListFragment.Callbacks {
 
+    @Inject
+    Context context;
+
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -36,6 +44,8 @@ public class ThreadListActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_list);
+        VoatApp.component.inject(this);
+        Log.d("ThreadListActivity", context.getPackageName());
 
         if (findViewById(R.id.thread_detail_container) != null) {
             // The detail container view will be present only in the
