@@ -99,7 +99,7 @@ public class ThreadListFragment extends ListFragment {
                         android.R.id.text1,
                         subverse.getData());
 
-                mThreadListAdapter.setSubverse(subverse);
+                Subverse.MAIN = subverse;
                 setListAdapter(mThreadListAdapter);
 
                 Timber.d("Success!");
@@ -151,7 +151,7 @@ public class ThreadListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(Integer.toString(mThreadListAdapter.getSubverse().getData().get(position).getId()));
+        mCallbacks.onItemSelected(Integer.toString(Subverse.MAIN.getData().get(position).getId()));
     }
 
     @Override

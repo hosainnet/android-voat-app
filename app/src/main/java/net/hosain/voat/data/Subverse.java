@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Subverse {
 
+    public static Subverse MAIN;
+
     private List<DataEntity> data;
     private boolean success;
 
@@ -21,6 +23,17 @@ public class Subverse {
 
     public boolean isSuccess() {
         return success;
+    }
+
+    public static DataEntity getThreadWithId(String id) {
+        List<DataEntity> data = MAIN.data;
+        for (int i = 0; i < data.size(); i++) {
+            DataEntity dataEntity = data.get(i);
+            if (Integer.toString(dataEntity.getId()) == id) {
+                return dataEntity;
+            }
+        }
+        return null;
     }
 
 }

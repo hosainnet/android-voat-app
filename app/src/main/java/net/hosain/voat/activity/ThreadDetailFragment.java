@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.hosain.voat.R;
-import net.hosain.voat.dummy.DummyContent;
+import net.hosain.voat.data.DataEntity;
+import net.hosain.voat.data.Subverse;
 
 /**
  * A fragment representing a single Thread detail screen.
@@ -26,7 +27,7 @@ public class ThreadDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private DataEntity mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -43,7 +44,7 @@ public class ThreadDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = Subverse.getThreadWithId(getArguments().getString(ARG_ITEM_ID));
         }
     }
 
@@ -54,7 +55,7 @@ public class ThreadDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.thread_detail)).setText(mItem.content);
+            ((TextView) rootView.findViewById(R.id.thread_detail)).setText(mItem.getContent());
         }
 
         return rootView;
