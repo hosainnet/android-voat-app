@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import net.hosain.voat.VoatApp;
-import net.hosain.voat.data.DataEntity;
 import net.hosain.voat.data.Subverse;
-import net.hosain.voat.dummy.DummyContent;
 import net.hosain.voat.service.ApiService;
 
 import javax.inject.Inject;
@@ -30,8 +28,10 @@ import timber.log.Timber;
  */
 public class ThreadListFragment extends ListFragment {
 
+    private ThreadListAdapter mThreadListAdapter;
+
     @Inject
-    ApiService apiService;
+    ApiService mApiService;
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -88,16 +88,20 @@ public class ThreadListFragment extends ListFragment {
     }
 
     private void getThreads(String subverse) {
-        apiService.listThreads(subverse, new Callback<Subverse>() {
+        mApiService.listThreads(subverse, new Callback<Subverse>() {
 
             @Override
             public void success(Subverse subverse, Response response) {
 
-                setListAdapter(new ThreadListAdapter<DataEntity>(
+                mThreadListAdapter = new ThreadListAdapter<>(
                         getActivity(),
                         android.R.layout.simple_list_item_activated_1,
                         android.R.id.text1,
-                        subverse.getData()));
+                        subverse.getData());
+
+                mThreadListAdapter.setSubverse(subverse);
+                setListAdapter(mThreadListAdapter);
+
                 Timber.d("Success!");
                 Timber.d("Threads size " + subverse.getData().size());
             }
@@ -147,7 +151,7 @@ public class ThreadListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(Integer.toString(mThreadListAdapter.getSubverse().getData().get(position).getId()));
     }
 
     @Override
