@@ -2,7 +2,7 @@ package net.hosain.voat;
 
 import android.app.Application;
 
-public class VoatApplication extends Application {
+public class VoatApp extends Application {
 
     @Override
     public void onCreate() {
