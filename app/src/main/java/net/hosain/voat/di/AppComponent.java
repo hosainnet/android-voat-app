@@ -2,6 +2,7 @@ package net.hosain.voat.di;
 
 import net.hosain.voat.activity.subverse.SubverseActivity;
 import net.hosain.voat.activity.subverse.SubverseFragment;
+import net.hosain.voat.activity.thread.DetailCommentsFragment;
 
 import javax.inject.Singleton;
 
@@ -11,6 +12,7 @@ import dagger.Component;
 @Component(modules = {AppModule.class})
 public interface AppComponent {
     void inject(SubverseActivity threadListActivity);
-
     void inject(SubverseFragment subverseFragment);
+
+    void inject(DetailCommentsFragment detailCommentsFragment);
 }
