@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.ThreadListActivity"
+            android:name=".activity.subverse.ThreadListActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,12 +20,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.DetailActivity"
+            android:name=".activity.thread.DetailActivity"
             android:label="@string/title_activity_detail"
-            android:parentActivityName=".activity.ThreadListActivity">
+            android:parentActivityName=".activity.subverse.ThreadListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.hosain.voat.activity.ThreadListActivity" />
+                android:value=".activity.subverse.ThreadListActivity" />
         </activity>
     </application>
 

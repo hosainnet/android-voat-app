@@ -1,7 +1,7 @@
 package net.hosain.voat.di;
 
-import net.hosain.voat.activity.ThreadListActivity;
-import net.hosain.voat.activity.ThreadListFragment;
+import net.hosain.voat.activity.subverse.ThreadListActivity;
+import net.hosain.voat.activity.subverse.ThreadListFragment;
 
 import javax.inject.Singleton;
 

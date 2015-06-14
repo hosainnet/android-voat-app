@@ -1,4 +1,4 @@
-package net.hosain.voat.activity;
+package net.hosain.voat.activity.thread;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

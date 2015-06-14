@@ -1,4 +1,4 @@
-package net.hosain.voat.activity;
+package net.hosain.voat.activity.thread;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import net.hosain.voat.R;
+import net.hosain.voat.activity.subverse.ThreadListActivity;
 import net.hosain.voat.data.DataEntity;
 import net.hosain.voat.data.Subverse;
 

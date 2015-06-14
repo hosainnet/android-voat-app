@@ -1,4 +1,4 @@
-package net.hosain.voat.activity;
+package net.hosain.voat.activity.subverse;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

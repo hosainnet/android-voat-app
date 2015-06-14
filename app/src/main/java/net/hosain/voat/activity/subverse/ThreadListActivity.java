@@ -1,4 +1,4 @@
-package net.hosain.voat.activity;
+package net.hosain.voat.activity.subverse;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentActivity;
 
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
+import net.hosain.voat.activity.thread.DetailActivity;
+import net.hosain.voat.activity.thread.DetailWebFragment;
 
 
 /**

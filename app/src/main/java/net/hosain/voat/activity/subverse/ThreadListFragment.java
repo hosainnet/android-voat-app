@@ -1,4 +1,4 @@
-package net.hosain.voat.activity;
+package net.hosain.voat.activity.subverse;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import net.hosain.voat.VoatApp;
+import net.hosain.voat.activity.thread.DetailWebFragment;
 import net.hosain.voat.data.Subverse;
 import net.hosain.voat.service.ApiService;
 
