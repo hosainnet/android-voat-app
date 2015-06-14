@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.webkit.WebView;
 
 import net.hosain.voat.R;
 import net.hosain.voat.data.DataEntity;
@@ -22,8 +22,8 @@ import butterknife.InjectView;
  */
 public class ThreadDetailFragment extends Fragment {
 
-    @InjectView(R.id.thread_title)
-    TextView mThreadTitle;
+    @InjectView(R.id.thread_webview)
+    WebView mThreadWebView;
 
     /**
      * The fragment argument representing the item ID that this fragment
@@ -64,7 +64,7 @@ public class ThreadDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            mThreadTitle.setText(mItem.getContent());
+            mThreadWebView.loadUrl(mItem.getUrl());
         }
 
         return rootView;
