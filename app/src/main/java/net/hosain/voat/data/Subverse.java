@@ -29,7 +29,7 @@ public class Subverse {
         List<DataEntity> data = MAIN.data;
         for (int i = 0; i < data.size(); i++) {
             DataEntity dataEntity = data.get(i);
-            if (Integer.toString(dataEntity.getId()) == id) {
+            if (Integer.toString(dataEntity.getId()).equals(id)) {
                 return dataEntity;
             }
         }
