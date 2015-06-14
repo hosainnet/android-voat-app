@@ -44,6 +44,14 @@ public class DetailWebFragment extends Fragment {
     public DetailWebFragment() {
     }
 
+    public static DetailWebFragment newInstance(String threadId) {
+        DetailWebFragment fragment = new DetailWebFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_ITEM_ID, threadId);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

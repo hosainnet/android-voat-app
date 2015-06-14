@@ -3,9 +3,8 @@
     <string name="title_thread_detail">Thread Detail</string>
     <string name="title_activity_detail">DetailActivity</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_link">Link</string>
+    <string name="title_comments">Comments</string>
 
     <string name="hello_world">Hello world!</string>
 
