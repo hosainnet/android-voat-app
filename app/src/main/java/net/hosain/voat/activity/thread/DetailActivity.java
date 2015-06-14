@@ -136,7 +136,16 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
-            return DetailWebFragment.newInstance(mThreadId);
+            switch (position) {
+                case 0:
+                    return DetailWebFragment.newInstance(mThreadId);
+
+                case 1:
+                    return DetailCommentsFragment.newInstance(mThreadId);
+
+                default:
+                    return null;
+            }
         }
 
         @Override
