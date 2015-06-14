@@ -18,7 +18,7 @@ import net.hosain.voat.VoatApp;
  * <p/>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link ThreadListFragment} and the item details
- * (if present) is a {@link ThreadDetailFragment}.
+ * (if present) is a {@link ThreadDetailFragmentWeb}.
  * <p/>
  * This activity also implements the required
  * {@link ThreadListFragment.Callbacks} interface
@@ -68,8 +68,8 @@ public class ThreadListActivity extends FragmentActivity
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ThreadDetailFragment.ARG_ITEM_ID, id);
-            ThreadDetailFragment fragment = new ThreadDetailFragment();
+            arguments.putString(ThreadDetailFragmentWeb.ARG_ITEM_ID, id);
+            ThreadDetailFragmentWeb fragment = new ThreadDetailFragmentWeb();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.thread_detail_container, fragment)
@@ -79,7 +79,7 @@ public class ThreadListActivity extends FragmentActivity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, ThreadDetailActivity.class);
-            detailIntent.putExtra(ThreadDetailFragment.ARG_ITEM_ID, id);
+            detailIntent.putExtra(ThreadDetailFragmentWeb.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
     }

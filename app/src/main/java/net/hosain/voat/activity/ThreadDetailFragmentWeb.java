@@ -20,7 +20,7 @@ import butterknife.InjectView;
  * in two-pane mode (on tablets) or a {@link ThreadDetailActivity}
  * on handsets.
  */
-public class ThreadDetailFragment extends Fragment {
+public class ThreadDetailFragmentWeb extends Fragment {
 
     @InjectView(R.id.thread_webview)
     WebView mThreadWebView;
@@ -40,7 +40,7 @@ public class ThreadDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ThreadDetailFragment() {
+    public ThreadDetailFragmentWeb() {
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ThreadDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_thread_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_thread_detail_web, container, false);
 
         ButterKnife.inject(this, rootView);
 

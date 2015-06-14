@@ -18,7 +18,7 @@ import net.hosain.voat.data.Subverse;
  * in a {@link ThreadListActivity}.
  * <p/>
  * This activity is mostly just a 'shell' activity containing nothing
- * more than a {@link ThreadDetailFragment}.
+ * more than a {@link ThreadDetailFragmentWeb}.
  */
 public class ThreadDetailActivity extends ActionBarActivity {
 
@@ -40,7 +40,7 @@ public class ThreadDetailActivity extends ActionBarActivity {
         // http://developer.android.com/guide/components/fragments.html
         //
 
-        String threadId = getIntent().getStringExtra(ThreadDetailFragment.ARG_ITEM_ID);
+        String threadId = getIntent().getStringExtra(ThreadDetailFragmentWeb.ARG_ITEM_ID);
         DataEntity dataEntity = Subverse.getThreadWithId(threadId);
 
         if (dataEntity != null) {
@@ -51,9 +51,9 @@ public class ThreadDetailActivity extends ActionBarActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ThreadDetailFragment.ARG_ITEM_ID,
+            arguments.putString(ThreadDetailFragmentWeb.ARG_ITEM_ID,
                     threadId);
-            ThreadDetailFragment fragment = new ThreadDetailFragment();
+            ThreadDetailFragmentWeb fragment = new ThreadDetailFragmentWeb();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.thread_detail_container, fragment)
