@@ -3,7 +3,6 @@
     package="net.hosain.voat">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".VoatApp"
         android:allowBackup="true"
@@ -26,14 +25,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.ThreadListActivity" />
-        </activity>
-        <activity
-            android:name=".dev.ThreadActivity"
-            android:label="@string/title_activity_thread"
-            android:parentActivityName=".activity.ThreadListActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.hosain.voat.activity.ThreadListActivity" />
         </activity>
     </application>
 
