@@ -11,6 +11,9 @@ import net.hosain.voat.R;
 import net.hosain.voat.data.DataEntity;
 import net.hosain.voat.data.Subverse;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * A fragment representing a single Thread detail screen.
  * This fragment is either contained in a {@link ThreadListActivity}
@@ -18,6 +21,10 @@ import net.hosain.voat.data.Subverse;
  * on handsets.
  */
 public class ThreadDetailFragment extends Fragment {
+
+    @InjectView(R.id.thread_title)
+    TextView mThreadTitle;
+
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -53,9 +60,11 @@ public class ThreadDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_thread_detail, container, false);
 
+        ButterKnife.inject(this, rootView);
+
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.thread_detail)).setText(mItem.getContent());
+            mThreadTitle.setText(mItem.getContent());
         }
 
         return rootView;

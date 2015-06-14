@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 
 import net.hosain.voat.R;
+import net.hosain.voat.data.DataEntity;
+import net.hosain.voat.data.Subverse;
 
 
 /**
@@ -37,12 +39,20 @@ public class ThreadDetailActivity extends ActionBarActivity {
         //
         // http://developer.android.com/guide/components/fragments.html
         //
+
+        String threadId = getIntent().getStringExtra(ThreadDetailFragment.ARG_ITEM_ID);
+        DataEntity dataEntity = Subverse.getThreadWithId(threadId);
+
+        if (dataEntity != null) {
+            this.setTitle(dataEntity.getTitle());
+        }
+
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
             arguments.putString(ThreadDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(ThreadDetailFragment.ARG_ITEM_ID));
+                    threadId);
             ThreadDetailFragment fragment = new ThreadDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
