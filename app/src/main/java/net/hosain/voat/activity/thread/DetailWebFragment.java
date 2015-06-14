@@ -8,59 +8,19 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import net.hosain.voat.R;
-import net.hosain.voat.activity.subverse.SubverseActivity;
-import net.hosain.voat.data.DataEntity;
-import net.hosain.voat.data.Subverse;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-/**
- * A fragment representing a single Thread detail screen.
- * This fragment is either contained in a {@link SubverseActivity}
- * in two-pane mode (on tablets) or a {@link DetailActivity}
- * on handsets.
- */
-public class DetailWebFragment extends Fragment {
+public class DetailWebFragment extends BaseDetailFragment {
 
     @InjectView(R.id.thread_webview)
     WebView mThreadWebView;
 
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
-    private DataEntity mItem;
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public DetailWebFragment() {
-    }
-
-    public static DetailWebFragment newInstance(String threadId) {
+    public static Fragment newInstance(String threadId) {
         DetailWebFragment fragment = new DetailWebFragment();
-        Bundle args = new Bundle();
-        args.putString(Integer.toString(R.id.thread_id), threadId);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (getArguments().containsKey(Integer.toString(R.id.thread_id))) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            mItem = Subverse.getThreadWithId(getArguments().getString(Integer.toString(R.id.thread_id)));
-        }
+        return newInstance(threadId, fragment);
     }
 
     @Override
