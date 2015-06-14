@@ -2,9 +2,12 @@ package net.hosain.voat.activity.thread;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
@@ -14,6 +17,8 @@ import net.hosain.voat.service.ApiService;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -23,7 +28,10 @@ import timber.log.Timber;
 public class DetailCommentsFragment extends BaseDetailFragment {
 
     @Inject
-    ApiService apiService;
+    ApiService mApiService;
+
+    @InjectView(R.id.comments_container)
+    LinearLayout mCommentsContainer;
 
     public static Fragment newInstance(String threadId) {
         DetailCommentsFragment fragment = new DetailCommentsFragment();
@@ -32,17 +40,22 @@ public class DetailCommentsFragment extends BaseDetailFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail_comments, container, false);
-        VoatApp.component.inject(this);
 
-        apiService.listComments(mItem.getSubverse(), mItem.getId(), new Callback<Discussion>() {
+        VoatApp.component.inject(this);
+        ButterKnife.inject(this, view);
+
+        mApiService.listComments(mItem.getSubverse(), mItem.getId(), new Callback<Discussion>() {
             @Override
             public void success(Discussion discussion, Response response) {
                 for (Comment comment : discussion.getData()) {
                     Timber.d("Comment " + comment.getContent());
+                    TextView textView = (TextView) inflater.inflate(android.R.layout.simple_list_item_1, container, false);
+                    textView.setText(Html.fromHtml(comment.getFormattedContent()));
+                    mCommentsContainer.addView(textView);
                 }
             }
 
