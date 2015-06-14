@@ -1,7 +1,7 @@
 package net.hosain.voat.di;
 
-import net.hosain.voat.activity.subverse.ThreadListActivity;
-import net.hosain.voat.activity.subverse.ThreadListFragment;
+import net.hosain.voat.activity.subverse.SubverseActivity;
+import net.hosain.voat.activity.subverse.SubverseFragment;
 
 import javax.inject.Singleton;
 
@@ -10,7 +10,7 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class})
 public interface AppComponent {
-    void inject(ThreadListActivity threadListActivity);
+    void inject(SubverseActivity threadListActivity);
 
-    void inject(ThreadListFragment threadListFragment);
+    void inject(SubverseFragment subverseFragment);
 }

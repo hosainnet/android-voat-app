@@ -27,9 +27,9 @@ import timber.log.Timber;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class ThreadListFragment extends ListFragment {
+public class SubverseFragment extends ListFragment {
 
-    private ThreadListAdapter mThreadListAdapter;
+    private SubverseAdapter mSubverseAdapter;
 
     @Inject
     ApiService mApiService;
@@ -77,7 +77,7 @@ public class ThreadListFragment extends ListFragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ThreadListFragment() {
+    public SubverseFragment() {
     }
 
     @Override
@@ -94,14 +94,14 @@ public class ThreadListFragment extends ListFragment {
             @Override
             public void success(Subverse subverse, Response response) {
 
-                mThreadListAdapter = new ThreadListAdapter<>(
+                mSubverseAdapter = new SubverseAdapter<>(
                         getActivity(),
                         android.R.layout.simple_list_item_activated_1,
                         android.R.id.text1,
                         subverse.getData());
 
                 Subverse.MAIN = subverse;
-                setListAdapter(mThreadListAdapter);
+                setListAdapter(mSubverseAdapter);
 
                 Timber.d("Success!");
                 Timber.d("Threads size " + subverse.getData().size());

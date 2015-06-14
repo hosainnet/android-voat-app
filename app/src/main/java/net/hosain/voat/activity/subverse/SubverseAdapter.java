@@ -5,9 +5,9 @@ import android.widget.ArrayAdapter;
 
 import java.util.List;
 
-public class ThreadListAdapter<T> extends ArrayAdapter<Thread> {
+public class SubverseAdapter<T> extends ArrayAdapter<Thread> {
 
-    public ThreadListAdapter(Context context, int resource, int textViewResourceId, List objects) {
+    public SubverseAdapter(Context context, int resource, int textViewResourceId, List objects) {
         super(context, resource, textViewResourceId, objects);
     }
 

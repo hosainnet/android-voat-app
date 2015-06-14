@@ -19,15 +19,15 @@ import net.hosain.voat.activity.thread.DetailWebFragment;
  * item details side-by-side using two vertical panes.
  * <p/>
  * The activity makes heavy use of fragments. The list of items is a
- * {@link ThreadListFragment} and the item details
+ * {@link SubverseFragment} and the item details
  * (if present) is a {@link DetailWebFragment}.
  * <p/>
  * This activity also implements the required
- * {@link ThreadListFragment.Callbacks} interface
+ * {@link SubverseFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class ThreadListActivity extends FragmentActivity
-        implements ThreadListFragment.Callbacks {
+public class SubverseActivity extends FragmentActivity
+        implements SubverseFragment.Callbacks {
 
 
     /**
@@ -51,7 +51,7 @@ public class ThreadListActivity extends FragmentActivity
 
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
-            ((ThreadListFragment) getSupportFragmentManager()
+            ((SubverseFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.thread_list))
                     .setActivateOnItemClick(true);
         }
@@ -60,7 +60,7 @@ public class ThreadListActivity extends FragmentActivity
     }
 
     /**
-     * Callback method from {@link ThreadListFragment.Callbacks}
+     * Callback method from {@link SubverseFragment.Callbacks}
      * indicating that the item with the given ID was selected.
      */
     @Override

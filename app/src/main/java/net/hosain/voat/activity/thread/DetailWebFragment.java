@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import net.hosain.voat.R;
-import net.hosain.voat.activity.subverse.ThreadListActivity;
+import net.hosain.voat.activity.subverse.SubverseActivity;
 import net.hosain.voat.data.DataEntity;
 import net.hosain.voat.data.Subverse;
 
@@ -17,7 +17,7 @@ import butterknife.InjectView;
 
 /**
  * A fragment representing a single Thread detail screen.
- * This fragment is either contained in a {@link ThreadListActivity}
+ * This fragment is either contained in a {@link SubverseActivity}
  * in two-pane mode (on tablets) or a {@link DetailActivity}
  * on handsets.
  */
