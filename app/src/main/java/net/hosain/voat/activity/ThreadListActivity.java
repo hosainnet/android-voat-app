@@ -78,7 +78,7 @@ public class ThreadListActivity extends FragmentActivity
         } else {
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
-            Intent detailIntent = new Intent(this, ThreadDetailActivity.class);
+            Intent detailIntent = new Intent(this, DetailActivity.class);
             detailIntent.putExtra(ThreadDetailFragmentWeb.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
