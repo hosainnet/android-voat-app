@@ -70,7 +70,7 @@ public class SubverseActivity extends FragmentActivity
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(DetailWebFragment.ARG_ITEM_ID, id);
+            arguments.putString(Integer.toString(R.id.thread_id), id);
             DetailWebFragment fragment = new DetailWebFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -81,7 +81,7 @@ public class SubverseActivity extends FragmentActivity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, DetailActivity.class);
-            detailIntent.putExtra(DetailWebFragment.ARG_ITEM_ID, id);
+            detailIntent.putExtra(Integer.toString(R.id.thread_id), id);
             startActivity(detailIntent);
         }
     }

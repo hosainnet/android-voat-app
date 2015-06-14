@@ -43,7 +43,7 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        String threadId = getIntent().getStringExtra(DetailWebFragment.ARG_ITEM_ID);
+        String threadId = getIntent().getStringExtra(Integer.toString(R.id.thread_id));
         if (threadId != null) {
             DataEntity thread = Subverse.getThreadWithId(threadId);
             setTitle(thread.getTitle());

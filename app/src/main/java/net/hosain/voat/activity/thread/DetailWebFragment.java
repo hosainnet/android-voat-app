@@ -30,7 +30,6 @@ public class DetailWebFragment extends Fragment {
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
-    public static final String ARG_ITEM_ID = "item_id";
 
     /**
      * The dummy content this fragment is presenting.
@@ -47,7 +46,7 @@ public class DetailWebFragment extends Fragment {
     public static DetailWebFragment newInstance(String threadId) {
         DetailWebFragment fragment = new DetailWebFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_ITEM_ID, threadId);
+        args.putString(Integer.toString(R.id.thread_id), threadId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,11 +55,11 @@ public class DetailWebFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
+        if (getArguments().containsKey(Integer.toString(R.id.thread_id))) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = Subverse.getThreadWithId(getArguments().getString(ARG_ITEM_ID));
+            mItem = Subverse.getThreadWithId(getArguments().getString(Integer.toString(R.id.thread_id)));
         }
     }
 
