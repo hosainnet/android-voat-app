@@ -12,13 +12,13 @@ import net.hosain.voat.VoatApp;
  * An activity representing a list of Threads. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link ThreadDetailActivity} representing
+ * lead to a {@link DetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  * <p/>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link ThreadListFragment} and the item details
- * (if present) is a {@link ThreadDetailFragmentWeb}.
+ * (if present) is a {@link DetailWebFragment}.
  * <p/>
  * This activity also implements the required
  * {@link ThreadListFragment.Callbacks} interface
@@ -68,8 +68,8 @@ public class ThreadListActivity extends FragmentActivity
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ThreadDetailFragmentWeb.ARG_ITEM_ID, id);
-            ThreadDetailFragmentWeb fragment = new ThreadDetailFragmentWeb();
+            arguments.putString(DetailWebFragment.ARG_ITEM_ID, id);
+            DetailWebFragment fragment = new DetailWebFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.thread_detail_container, fragment)
@@ -79,7 +79,7 @@ public class ThreadListActivity extends FragmentActivity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, DetailActivity.class);
-            detailIntent.putExtra(ThreadDetailFragmentWeb.ARG_ITEM_ID, id);
+            detailIntent.putExtra(DetailWebFragment.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
     }

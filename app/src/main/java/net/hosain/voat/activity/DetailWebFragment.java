@@ -17,10 +17,10 @@ import butterknife.InjectView;
 /**
  * A fragment representing a single Thread detail screen.
  * This fragment is either contained in a {@link ThreadListActivity}
- * in two-pane mode (on tablets) or a {@link ThreadDetailActivity}
+ * in two-pane mode (on tablets) or a {@link DetailActivity}
  * on handsets.
  */
-public class ThreadDetailFragmentWeb extends Fragment {
+public class DetailWebFragment extends Fragment {
 
     @InjectView(R.id.thread_webview)
     WebView mThreadWebView;
@@ -40,7 +40,7 @@ public class ThreadDetailFragmentWeb extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ThreadDetailFragmentWeb() {
+    public DetailWebFragment() {
     }
 
     @Override
