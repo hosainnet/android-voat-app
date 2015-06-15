@@ -3,5 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="base_text_padding">10dp</dimen>
+
+    <dimen name="subverse_item_image_margin_right">5dp</dimen>
+    <dimen name="subverse_item_container_padding">12dp</dimen>
     <dimen name="subverse_list_item_text_size">16sp</dimen>
+
+    <dimen name="seperator_line_padding">4dp</dimen>
+    <dimen name="seperator_line_height">1dp</dimen>
+
 </resources>
