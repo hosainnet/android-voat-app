@@ -3,6 +3,10 @@ package net.hosain.voat.data;
 
 public class DataEntity {
 
+    private static final int TYPE_SELF = 1;
+    private static final int TYPE_LINK = 2;
+
+
     private String date;
     private String thumbnail;
     private String lastEditDate;
@@ -137,6 +141,14 @@ public class DataEntity {
 
     public int getViews() {
         return views;
+    }
+
+    public boolean isSelf() {
+        return type == TYPE_SELF;
+    }
+
+    public boolean isLink() {
+        return type == TYPE_LINK;
     }
 
     @Override
