@@ -21,7 +21,8 @@
     </style>
 
     <style name="SubverseItemContainerStyle">
-        <item name="android:padding">@dimen/subverse_item_container_padding</item>
+        <item name="android:paddingTop">@dimen/subverse_item_container_padding</item>
+        <item name="android:paddingBottom">@dimen/subverse_item_container_padding</item>
     </style>
 
     <style name="SubverseItemTextStyle" parent="BaseTextStyle">
