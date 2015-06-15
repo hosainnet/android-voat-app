@@ -21,8 +21,10 @@
     </style>
 
     <style name="SubverseItemContainerStyle">
-        <item name="android:paddingTop">@dimen/subverse_item_container_padding</item>
-        <item name="android:paddingBottom">@dimen/subverse_item_container_padding</item>
+        <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingRight">@dimen/activity_vertical_margin</item>
     </style>
 
     <style name="SubverseItemTextStyle" parent="BaseTextStyle">
@@ -31,12 +33,6 @@
 
     <style name="SubverseItemImageStyle">
         <item name="android:layout_marginRight">@dimen/subverse_item_image_margin_right</item>
-    </style>
-
-    <style name="SeparatorLineStyle">
-        <item name="android:background">@android:color/darker_gray</item>
-        <item name="android:layout_height">@dimen/seperator_line_height</item>
-        <item name="android:padding">@dimen/seperator_line_padding</item>
     </style>
 
 </resources>

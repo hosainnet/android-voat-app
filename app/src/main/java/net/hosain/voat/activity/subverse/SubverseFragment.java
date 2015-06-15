@@ -12,6 +12,7 @@ import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
 import net.hosain.voat.data.Subverse;
 import net.hosain.voat.service.ApiService;
+import net.hosain.voat.utils.DividerItemDecoration;
 
 import javax.inject.Inject;
 
@@ -46,6 +47,7 @@ public class SubverseFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_subverse_list, container, false);
         ButterKnife.inject(this, view);
 
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         return view;
     }
