@@ -7,31 +7,43 @@
     android:orientation="vertical"
     tools:context="net.hosain.voat.activity.thread.DetailCommentsFragment">
 
-    <LinearLayout
-        android:id="@+id/self_text_container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/self_text"
-            style="@style/SelfTextStyle"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/self_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-    <LinearLayout
-        android:id="@+id/comments_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+                <TextView
+                    android:id="@+id/self_text"
+                    style="@style/SelfTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-    </LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/comments_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_below="@+id/self_text_container">
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
 
 </LinearLayout>
