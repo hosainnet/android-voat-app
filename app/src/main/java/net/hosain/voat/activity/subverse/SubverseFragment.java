@@ -41,8 +41,6 @@ public class SubverseFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VoatApp.component.inject(this);
-        getThreads("all");
-
     }
 
     @Override
@@ -50,6 +48,13 @@ public class SubverseFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_subverse_list, container, false);
         ButterKnife.inject(this, view);
+
+        if (savedInstanceState == null || Subverse.MAIN == null) {
+            getThreads("all");
+        } else {
+            mSubverseAdapter = new SubverseAdapter(Subverse.MAIN.getData());
+            mRecyclerView.setAdapter(mSubverseAdapter);
+        }
 
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
