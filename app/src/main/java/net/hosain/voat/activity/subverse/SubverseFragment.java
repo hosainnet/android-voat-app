@@ -1,6 +1,7 @@
 package net.hosain.voat.activity.subverse;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,9 +11,12 @@ import android.view.ViewGroup;
 
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
+import net.hosain.voat.activity.thread.DetailActivity;
+import net.hosain.voat.data.DataEntity;
 import net.hosain.voat.data.Subverse;
 import net.hosain.voat.service.ApiService;
 import net.hosain.voat.utils.DividerItemDecoration;
+import net.hosain.voat.utils.RecyclerItemClickListener;
 
 import javax.inject.Inject;
 
@@ -49,7 +53,24 @@ public class SubverseFragment extends Fragment {
 
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity().getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        DataEntity dataEntity = Subverse.MAIN.getData().get(position);
+                        onItemSelected(Integer.toString(dataEntity.getId()));
+                    }
+                })
+        );
+
         return view;
+    }
+
+    public void onItemSelected(String id) {
+        Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
+        detailIntent.putExtra(Integer.toString(R.id.thread_id), id);
+        startActivity(detailIntent);
     }
 
     private void getThreads(String subverse) {
