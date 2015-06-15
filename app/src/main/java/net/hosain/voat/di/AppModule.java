@@ -2,7 +2,10 @@ package net.hosain.voat.di;
 
 import android.content.Context;
 
+import com.squareup.picasso.Picasso;
+
 import net.hosain.voat.service.ApiService;
+import net.hosain.voat.service.ImageService;
 
 import javax.inject.Singleton;
 
@@ -52,5 +55,17 @@ public class AppModule {
     @Provides
     ApiService provideApiService(RestAdapter restAdapter) {
         return restAdapter.create(ApiService.class);
+    }
+
+    @Singleton
+    @Provides
+    Picasso providePicasso(Context context) {
+        return new Picasso.Builder(context).build();
+    }
+
+    @Singleton
+    @Provides
+    ImageService provideImageService() {
+        return new ImageService();
     }
 }

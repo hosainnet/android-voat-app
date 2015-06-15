@@ -1,6 +1,5 @@
 package net.hosain.voat.activity.subverse;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,18 +8,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.hosain.voat.R;
+import net.hosain.voat.VoatApp;
 import net.hosain.voat.data.DataEntity;
+import net.hosain.voat.service.ImageService;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.DetailItemViewHolder> {
 
     private List<DataEntity> mThreads;
-    private Context mContext;
 
-    public SubverseAdapter(Context context, List<DataEntity> threads) {
+    @Inject
+    ImageService imageService;
+
+    public SubverseAdapter(List<DataEntity> threads) {
         this.mThreads = threads;
-        this.mContext = context;
+        VoatApp.component.inject(this);
     }
 
     @Override
@@ -31,7 +36,9 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
 
     @Override
     public void onBindViewHolder(DetailItemViewHolder holder, int position) {
-        holder.mTitleView.setText(mThreads.get(position).getTitle());
+        DataEntity currentThread = mThreads.get(position);
+        imageService.loadThumbnail(currentThread.getThumbnail(), holder.mImageView);
+        holder.mTitleView.setText(currentThread.getTitle());
     }
 
     @Override

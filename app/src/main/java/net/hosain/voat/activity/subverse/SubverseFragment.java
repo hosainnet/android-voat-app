@@ -58,7 +58,7 @@ public class SubverseFragment extends Fragment {
             @Override
             public void success(Subverse subverse, Response response) {
 
-                mSubverseAdapter = new SubverseAdapter(getActivity().getApplicationContext(), subverse.getData());
+                mSubverseAdapter = new SubverseAdapter(subverse.getData());
 
                 Subverse.MAIN = subverse;
                 mRecyclerView.setAdapter(mSubverseAdapter);
