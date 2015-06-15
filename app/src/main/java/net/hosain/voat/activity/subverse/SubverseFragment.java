@@ -46,7 +46,7 @@ public class SubverseFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_subverse_list, container, false);
         ButterKnife.inject(this, view);
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         return view;
     }
 

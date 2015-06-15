@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.hosain.voat.R;
@@ -30,7 +31,7 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
 
     @Override
     public void onBindViewHolder(DetailItemViewHolder holder, int position) {
-        holder.title.setText(mThreads.get(position).getTitle());
+        holder.mTitleView.setText(mThreads.get(position).getTitle());
     }
 
     @Override
@@ -40,13 +41,14 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
 
     public static class DetailItemViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView title;
+        protected ImageView mImageView;
+        protected TextView mTitleView;
 
         public DetailItemViewHolder(View itemView) {
             super(itemView);
-            this.title = (TextView) itemView.findViewById(R.id.subverse_item_title);
+            this.mImageView = (ImageView) itemView.findViewById(R.id.subverse_item_image);
+            this.mTitleView = (TextView) itemView.findViewById(R.id.subverse_item_title);
         }
-
     }
 
 }
