@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import net.hosain.voat.R;
@@ -32,6 +33,9 @@ public class DetailWebFragment extends BaseDetailFragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
+            WebSettings webSettings = mThreadWebView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setDomStorageEnabled(true);
             mThreadWebView.loadUrl(mItem.getUrl());
         }
 
