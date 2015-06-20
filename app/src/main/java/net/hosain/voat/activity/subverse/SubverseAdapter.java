@@ -39,6 +39,7 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
         DataEntity currentThread = mThreads.get(position);
         imageService.loadThumbnail(currentThread.getThumbnail(), holder.mImageView);
         holder.mTitleView.setText(currentThread.getTitle());
+        holder.mCommentCount.setText(Integer.toString(currentThread.getCommentCount()));
     }
 
     @Override
@@ -50,11 +51,13 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
 
         protected ImageView mImageView;
         protected TextView mTitleView;
+        protected TextView mCommentCount;
 
         public DetailItemViewHolder(View itemView) {
             super(itemView);
             this.mImageView = (ImageView) itemView.findViewById(R.id.subverse_item_image);
             this.mTitleView = (TextView) itemView.findViewById(R.id.subverse_item_title);
+            this.mCommentCount = (TextView) itemView.findViewById(R.id.subverse_item_comment_count);
         }
     }
 
