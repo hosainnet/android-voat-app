@@ -28,7 +28,15 @@
     </style>
 
     <style name="SubverseItemTextStyle" parent="BaseTextStyle">
-        <item name="android:textSize">@dimen/subverse_list_item_text_size</item>
+        <item name="android:textSize">@dimen/subverse_list_item_title</item>
+    </style>
+
+    <style name="SubverseItemVoteCountTextStyle" parent="BaseTextStyle">
+        <item name="android:textSize">@dimen/subverse_list_item_vote_count</item>
+    </style>
+
+    <style name="SubverseItemDomainTextStyle" parent="BaseTextStyle">
+        <item name="android:textSize">@dimen/subverse_list_item_domain</item>
     </style>
 
     <style name="SubverseItemImageStyle">

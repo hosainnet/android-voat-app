@@ -1,6 +1,11 @@
 package net.hosain.voat.data;
 
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import timber.log.Timber;
+
 public class DataEntity {
 
     private static final int TYPE_SELF = 1;
@@ -149,6 +154,20 @@ public class DataEntity {
 
     public boolean isLink() {
         return type == TYPE_LINK;
+    }
+
+    public String getDomain() {
+        if (isSelf()) {
+            return "self";
+        } else {
+            try {
+                URL url = new URL(getUrl());
+                return url.getHost();
+            } catch (MalformedURLException e) {
+                Timber.e(e.getMessage());
+            }
+            return "";
+        }
     }
 
     @Override
