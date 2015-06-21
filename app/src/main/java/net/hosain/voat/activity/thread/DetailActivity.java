@@ -10,6 +10,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.ViewSwitcher;
 
 import net.hosain.voat.R;
 import net.hosain.voat.data.DataEntity;
@@ -17,27 +19,27 @@ import net.hosain.voat.data.Subverse;
 
 import java.util.Locale;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class DetailActivity extends ActionBarActivity implements ActionBar.TabListener {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     ViewPager mViewPager;
+
+    @InjectView(R.id.detail_view_switcher)
+    ViewSwitcher mDetailViewSwitcher;
+
+    @InjectView(R.id.comments_fragment_placeholder)
+    FrameLayout mCommentsFragmentPlaceholder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        ButterKnife.inject(this);
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -47,12 +49,35 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
         DataEntity thread = Subverse.getThreadWithId(threadId);
         setTitle(thread.getTitle());
 
+        if (thread.isLink()) {
+            setupLinkView(actionBar, threadId);
+        } else {
+            setupSelfView(actionBar, threadId);
+        }
+
+    }
+
+    private void setupSelfView(ActionBar actionBar, String threadId) {
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+
+        mDetailViewSwitcher.showNext();
+
+        Fragment commentsFragment = DetailCommentsFragment.newInstance(threadId);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.comments_fragment_placeholder, commentsFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void setupLinkView(final ActionBar actionBar, String threadId) {
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), threadId);
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = (ViewPager) findViewById(R.id.detail_view_holder);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // When swiping between different sections, select the corresponding
