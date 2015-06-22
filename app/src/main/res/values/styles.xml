@@ -20,6 +20,8 @@
     <style name="CommentTextStyle" parent="BaseTextStyle">
         <item name="android:gravity">center_vertical</item>
         <item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+        <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_horizontal_margin</item>
     </style>
 
     <style name="SelfTextStyle" parent="BaseTextStyle">

@@ -4,15 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.ViewSwitcher;
 
 import net.hosain.voat.R;
 import net.hosain.voat.data.Submission;
@@ -27,12 +24,6 @@ public class DetailActivity extends AppCompatActivity {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
-
-    @InjectView(R.id.detail_view_switcher)
-    ViewSwitcher mDetailViewSwitcher;
-
-    @InjectView(R.id.comments_fragment_placeholder)
-    FrameLayout mCommentsFragmentPlaceholder;
 
     @InjectView(R.id.toolbar)
     Toolbar mToolbar;
@@ -52,37 +43,10 @@ public class DetailActivity extends AppCompatActivity {
         Submission submission = Subverse.getSubmissionWithId(submissionId);
         setTitle(submission.getTitle());
 
-        if (submission.isLink()) {
-            setupLinkView(mToolbar, submissionId);
-        } else {
-            setupSelfView(mToolbar, submissionId);
-        }
-
-    }
-
-    private void setupSelfView(Toolbar mToolbar, String submissionId) {
-
-        mDetailViewSwitcher.showNext();
-
-        Fragment commentsFragment = DetailCommentsFragment.newInstance(submissionId);
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.comments_fragment_placeholder, commentsFragment);
-        fragmentTransaction.commit();
-    }
-
-    private void setupLinkView(final Toolbar mToolbar, String submissionId) {
-
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), submissionId);
-
-        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.detail_view_holder);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -113,16 +77,22 @@ public class DetailActivity extends AppCompatActivity {
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         String mSubmissionId;
+        Submission mSubmission;
 
         public SectionsPagerAdapter(FragmentManager fm, String submissionId) {
             super(fm);
             this.mSubmissionId = submissionId;
+            this.mSubmission = Subverse.getSubmissionWithId(submissionId);
         }
 
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+
+            if (mSubmission.isSelf()) {
+                return DetailCommentsFragment.newInstance(mSubmissionId);
+            }
 
             switch (position) {
                 case 0:
@@ -138,7 +108,9 @@ public class DetailActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            if (mSubmission.isSelf()) {
+                return 1;
+            }
             return 2;
         }
 

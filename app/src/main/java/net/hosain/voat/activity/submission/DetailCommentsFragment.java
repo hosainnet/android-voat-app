@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
@@ -32,12 +29,6 @@ public class DetailCommentsFragment extends BaseDetailFragment {
     @Inject
     ApiService mApiService;
 
-    @InjectView(R.id.self_text_container)
-    LinearLayout mSelfTextContainer;
-
-    @InjectView(R.id.self_text)
-    TextView mSelfTextView;
-
     @InjectView(R.id.comments_recyclerview)
     RecyclerView mRecyclerView;
 
@@ -57,11 +48,6 @@ public class DetailCommentsFragment extends BaseDetailFragment {
 
         VoatApp.component.inject(this);
         ButterKnife.inject(this, view);
-
-        if (mItem.isSelf()) {
-            mSelfTextView.setText(Html.fromHtml(mItem.getFormattedContent()));
-            mSelfTextContainer.setVisibility(View.VISIBLE);
-        }
 
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));

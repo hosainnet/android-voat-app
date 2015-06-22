@@ -20,23 +20,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/detail_view_switcher"
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/detail_view_holder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="net.hosain.voat.activity.submission.DetailActivity" />
 
-        <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/detail_view_holder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="net.hosain.voat.activity.submission.DetailActivity" />
-
-        <FrameLayout
-            android:id="@+id/comments_fragment_placeholder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </ViewSwitcher>
 
 </android.support.design.widget.CoordinatorLayout>
