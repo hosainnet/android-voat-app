@@ -7,43 +7,28 @@
     android:orientation="vertical"
     tools:context="net.hosain.voat.activity.submission.DetailCommentsFragment">
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/self_text_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/self_text"
+            style="@style/SelfTextStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:id="@+id/self_text_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/self_text"
-                    style="@style/SelfTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/comments_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_below="@+id/self_text_container">
-
-            </LinearLayout>
-        </RelativeLayout>
-
-    </ScrollView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/comments_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

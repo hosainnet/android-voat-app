@@ -2,6 +2,8 @@ package net.hosain.voat.activity.submission;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +13,9 @@ import android.widget.TextView;
 
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
-import net.hosain.voat.data.Comment;
 import net.hosain.voat.data.Discussion;
 import net.hosain.voat.service.ApiService;
+import net.hosain.voat.utils.DividerItemDecoration;
 
 import javax.inject.Inject;
 
@@ -30,14 +32,16 @@ public class DetailCommentsFragment extends BaseDetailFragment {
     @Inject
     ApiService mApiService;
 
-    @InjectView(R.id.comments_container)
-    LinearLayout mCommentsContainer;
-
     @InjectView(R.id.self_text_container)
     LinearLayout mSelfTextContainer;
 
     @InjectView(R.id.self_text)
     TextView mSelfTextView;
+
+    @InjectView(R.id.comments_recyclerview)
+    RecyclerView mRecyclerView;
+
+    private CommentsAdapter mCommentsAdapter;
 
     public static Fragment newInstance(String threadId) {
         DetailCommentsFragment fragment = new DetailCommentsFragment();
@@ -59,15 +63,23 @@ public class DetailCommentsFragment extends BaseDetailFragment {
             mSelfTextContainer.setVisibility(View.VISIBLE);
         }
 
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+
+        getComments(inflater, container);
+        return view;
+    }
+
+    private void getComments(final LayoutInflater inflater, final ViewGroup container) {
         mApiService.listComments(mItem.getSubverse(), mItem.getId(), new Callback<Discussion>() {
             @Override
             public void success(Discussion discussion, Response response) {
-                for (Comment comment : discussion.getData()) {
-                    Timber.d("Comment " + comment.getContent());
-                    TextView textView = (TextView) inflater.inflate(R.layout.fragment_comment, container, false);
-                    textView.setText(Html.fromHtml(comment.getFormattedContent()));
-                    mCommentsContainer.addView(textView);
-                }
+                mCommentsAdapter = new CommentsAdapter(discussion.getData());
+                mRecyclerView.setAdapter(mCommentsAdapter);
+
+
+                Timber.d("Comments Success!");
+                Timber.d("Comments size " + discussion.getData().size());
             }
 
             @Override
@@ -75,7 +87,6 @@ public class DetailCommentsFragment extends BaseDetailFragment {
                 Timber.e("Error getting comments " + error.getMessage());
             }
         });
-        return view;
     }
 
 }
