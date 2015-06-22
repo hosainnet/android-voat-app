@@ -25,7 +25,7 @@ public class Subverse {
         return success;
     }
 
-    public static Submission getThreadWithId(String id) {
+    public static Submission getSubmissionWithId(String id) {
         List<Submission> data = MAIN.data;
         for (int i = 0; i < data.size(); i++) {
             Submission submission = data.get(i);

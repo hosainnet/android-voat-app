@@ -16,7 +16,7 @@ import butterknife.InjectView;
 public class DetailWebFragment extends BaseDetailFragment {
 
     @InjectView(R.id.thread_webview)
-    WebView mThreadWebView;
+    WebView mSubmissionWebView;
 
 
     public static Fragment newInstance(String threadId) {
@@ -33,10 +33,10 @@ public class DetailWebFragment extends BaseDetailFragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            WebSettings webSettings = mThreadWebView.getSettings();
+            WebSettings webSettings = mSubmissionWebView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             webSettings.setDomStorageEnabled(true);
-            mThreadWebView.loadUrl(mItem.getUrl());
+            mSubmissionWebView.loadUrl(mItem.getUrl());
         }
 
         return rootView;

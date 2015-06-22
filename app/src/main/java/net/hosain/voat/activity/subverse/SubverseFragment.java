@@ -50,7 +50,7 @@ public class SubverseFragment extends Fragment {
         ButterKnife.inject(this, view);
 
         if (savedInstanceState == null || Subverse.MAIN == null) {
-            getThreads("all");
+            getSubmissions("all");
         } else {
             mSubverseAdapter = new SubverseAdapter(Subverse.MAIN.getData());
             mRecyclerView.setAdapter(mSubverseAdapter);
@@ -78,8 +78,8 @@ public class SubverseFragment extends Fragment {
         startActivity(detailIntent);
     }
 
-    private void getThreads(String subverse) {
-        mApiService.listThreads(subverse, new Callback<Subverse>() {
+    private void getSubmissions(String subverse) {
+        mApiService.listSubmissions(subverse, new Callback<Subverse>() {
 
             @Override
             public void success(Subverse subverse, Response response) {

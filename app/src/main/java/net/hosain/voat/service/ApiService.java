@@ -10,7 +10,7 @@ import retrofit.http.Path;
 public interface ApiService {
 
     @GET("/api/v1/v/{subverse}")
-    void listThreads(@Path("subverse") String subverse, Callback<Subverse> callback);
+    void listSubmissions(@Path("subverse") String subverse, Callback<Subverse> callback);
 
     @GET("/api/v1/v/{subverse}/{submissionID}/comments")
     void listComments(@Path("subverse") String subverse, @Path("submissionID") int submissionID, Callback<Discussion> callback);

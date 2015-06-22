@@ -18,13 +18,13 @@ import javax.inject.Inject;
 
 public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.DetailItemViewHolder> {
 
-    private List<Submission> mThreads;
+    private List<Submission> mSubmissions;
 
     @Inject
     ImageService imageService;
 
-    public SubverseAdapter(List<Submission> threads) {
-        this.mThreads = threads;
+    public SubverseAdapter(List<Submission> submissions) {
+        this.mSubmissions = submissions;
         VoatApp.component.inject(this);
     }
 
@@ -36,17 +36,17 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
 
     @Override
     public void onBindViewHolder(DetailItemViewHolder holder, int position) {
-        Submission currentThread = mThreads.get(position);
-        imageService.loadThumbnail(currentThread.getThumbnail(), holder.mImageView);
-        holder.mTitleView.setText(currentThread.getTitle());
-        holder.mCommentCount.setText(Integer.toString(currentThread.getCommentCount()));
-        holder.mVoteCount.setText(Integer.toString(currentThread.getUpVotes()));
-        holder.mDomain.setText(currentThread.getDomain());
+        Submission submission = mSubmissions.get(position);
+        imageService.loadThumbnail(submission.getThumbnail(), holder.mImageView);
+        holder.mTitleView.setText(submission.getTitle());
+        holder.mCommentCount.setText(Integer.toString(submission.getCommentCount()));
+        holder.mVoteCount.setText(Integer.toString(submission.getUpVotes()));
+        holder.mDomain.setText(submission.getDomain());
     }
 
     @Override
     public int getItemCount() {
-        return mThreads.size();
+        return mSubmissions.size();
     }
 
     public static class DetailItemViewHolder extends RecyclerView.ViewHolder {

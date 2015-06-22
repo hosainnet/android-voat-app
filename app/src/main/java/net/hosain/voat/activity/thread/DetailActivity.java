@@ -45,36 +45,36 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        String threadId = getIntent().getStringExtra(Integer.toString(R.id.thread_id));
-        Submission thread = Subverse.getThreadWithId(threadId);
-        setTitle(thread.getTitle());
+        String submissionId = getIntent().getStringExtra(Integer.toString(R.id.thread_id));
+        Submission submission = Subverse.getSubmissionWithId(submissionId);
+        setTitle(submission.getTitle());
 
-        if (thread.isLink()) {
-            setupLinkView(actionBar, threadId);
+        if (submission.isLink()) {
+            setupLinkView(actionBar, submissionId);
         } else {
-            setupSelfView(actionBar, threadId);
+            setupSelfView(actionBar, submissionId);
         }
 
     }
 
-    private void setupSelfView(ActionBar actionBar, String threadId) {
+    private void setupSelfView(ActionBar actionBar, String submissionId) {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         mDetailViewSwitcher.showNext();
 
-        Fragment commentsFragment = DetailCommentsFragment.newInstance(threadId);
+        Fragment commentsFragment = DetailCommentsFragment.newInstance(submissionId);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.comments_fragment_placeholder, commentsFragment);
         fragmentTransaction.commit();
     }
 
-    private void setupLinkView(final ActionBar actionBar, String threadId) {
+    private void setupLinkView(final ActionBar actionBar, String submissionId) {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), threadId);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), submissionId);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.detail_view_holder);
@@ -147,11 +147,11 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        String mThreadId;
+        String mSubmissionId;
 
-        public SectionsPagerAdapter(FragmentManager fm, String threadId) {
+        public SectionsPagerAdapter(FragmentManager fm, String submissionId) {
             super(fm);
-            this.mThreadId = threadId;
+            this.mSubmissionId = submissionId;
         }
 
         @Override
@@ -161,10 +161,10 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
 
             switch (position) {
                 case 0:
-                    return DetailWebFragment.newInstance(mThreadId);
+                    return DetailWebFragment.newInstance(mSubmissionId);
 
                 case 1:
-                    return DetailCommentsFragment.newInstance(mThreadId);
+                    return DetailCommentsFragment.newInstance(mSubmissionId);
 
                 default:
                     return null;

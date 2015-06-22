@@ -11,9 +11,9 @@ public abstract class BaseDetailFragment extends Fragment {
 
     Submission mItem;
 
-    protected static Fragment newInstance(String threadId, Fragment fragment) {
+    protected static Fragment newInstance(String submissionId, Fragment fragment) {
         Bundle args = new Bundle();
-        args.putString(Integer.toString(R.id.thread_id), threadId);
+        args.putString(Integer.toString(R.id.thread_id), submissionId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -26,7 +26,7 @@ public abstract class BaseDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = Subverse.getThreadWithId(getArguments().getString(Integer.toString(R.id.thread_id)));
+            mItem = Subverse.getSubmissionWithId(getArguments().getString(Integer.toString(R.id.thread_id)));
         }
     }
 
