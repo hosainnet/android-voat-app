@@ -34,22 +34,23 @@
         <item name="android:paddingRight">@dimen/activity_vertical_margin</item>
     </style>
 
+
+    <style name="SubverseItemImageStyle">
+        <item name="android:layout_marginRight">@dimen/subverse_list_item_image_margin</item>
+    </style>
+
     <style name="SubverseItemTextStyle" parent="BaseTextStyle">
         <item name="android:textSize">@dimen/subverse_list_item_title</item>
     </style>
 
-    <style name="SubverseItemVoteCountTextStyle" parent="BaseTextStyle">
-        <item name="android:textSize">@dimen/subverse_list_item_vote_count</item>
-        <item name="android:textColor">@color/secondary_text</item>
+    <style name="SubverseItemMetadata">
+        <item name="android:paddingTop">@dimen/subverse_list_item_metadata_padding</item>
+        <item name="android:paddingBottom">@dimen/subverse_list_item_metadata_padding</item>
     </style>
 
-    <style name="SubverseItemDomainTextStyle" parent="BaseTextStyle">
-        <item name="android:textSize">@dimen/subverse_list_item_domain</item>
+    <style name="SubverseItemMetadataTextStyle" parent="BaseTextStyle">
+        <item name="android:textSize">@dimen/subverse_list_item_metadata</item>
         <item name="android:textColor">@color/secondary_text</item>
-    </style>
-
-    <style name="SubverseItemImageStyle">
-        <item name="android:layout_marginRight">@dimen/subverse_item_image_margin_right</item>
     </style>
 
 </resources>

@@ -156,9 +156,21 @@ public class Submission {
         return type == TYPE_LINK;
     }
 
+    public int getTotalVotes() {
+        return upVotes - downVotes;
+    }
+
+    public String getByLine() {
+        return "by " + getUserName();
+    }
+
+    public String getMetadataText() {
+        return getTotalVotes() + "  -  " + getDomain() + " " + getByLine();
+    }
+
     public String getDomain() {
         if (isSelf()) {
-            return "self";
+            return "self." + getSubverse();
         } else {
             try {
                 URL url = new URL(getUrl());

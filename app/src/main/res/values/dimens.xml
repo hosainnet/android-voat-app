@@ -5,13 +5,10 @@
 
     <dimen name="base_text_padding">10dp</dimen>
 
-    <dimen name="subverse_item_image_margin_right">5dp</dimen>
-    <dimen name="subverse_item_container_padding">12dp</dimen>
+    <dimen name="subverse_list_item_image_margin">5dp</dimen>
+    <dimen name="subverse_list_item_padding">12dp</dimen>
     <dimen name="subverse_list_item_title">16sp</dimen>
-    <dimen name="subverse_list_item_vote_count">12sp</dimen>
-    <dimen name="subverse_list_item_domain">12sp</dimen>
-
-    <dimen name="seperator_line_padding">4dp</dimen>
-    <dimen name="seperator_line_height">1dp</dimen>
+    <dimen name="subverse_list_item_metadata">12sp</dimen>
+    <dimen name="subverse_list_item_metadata_padding">4dp</dimen>
 
 </resources>

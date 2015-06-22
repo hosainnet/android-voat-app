@@ -40,8 +40,7 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
         imageService.loadThumbnail(submission.getThumbnail(), holder.mImageView);
         holder.mTitleView.setText(submission.getTitle());
         holder.mCommentCount.setText(Integer.toString(submission.getCommentCount()));
-        holder.mVoteCount.setText(Integer.toString(submission.getUpVotes()));
-        holder.mDomain.setText(submission.getDomain());
+        holder.mMetadata.setText(submission.getMetadataText());
     }
 
     @Override
@@ -54,16 +53,15 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
         protected ImageView mImageView;
         protected TextView mTitleView;
         protected TextView mCommentCount;
-        protected TextView mVoteCount;
-        protected TextView mDomain;
+        protected TextView mMetadata;
 
         public DetailItemViewHolder(View itemView) {
             super(itemView);
             this.mImageView = (ImageView) itemView.findViewById(R.id.subverse_item_image);
             this.mTitleView = (TextView) itemView.findViewById(R.id.subverse_item_title);
             this.mCommentCount = (TextView) itemView.findViewById(R.id.subverse_item_comment_count);
-            this.mVoteCount = (TextView) itemView.findViewById(R.id.subverse_item_vote_count);
-            this.mDomain = (TextView) itemView.findViewById(R.id.subverse_item_domain);
+            this.mMetadata = (TextView) itemView.findViewById(R.id.subverse_item_metadata);
+
         }
     }
 
