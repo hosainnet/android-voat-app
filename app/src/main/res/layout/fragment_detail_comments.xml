@@ -5,7 +5,7 @@
     android:layout_marginLeft="@dimen/activity_vertical_margin"
     android:layout_marginRight="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="net.hosain.voat.activity.thread.DetailCommentsFragment">
+    tools:context="net.hosain.voat.activity.submission.DetailCommentsFragment">
 
     <ScrollView
         android:layout_width="match_parent"

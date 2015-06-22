@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
-import net.hosain.voat.activity.thread.DetailActivity;
+import net.hosain.voat.activity.submission.DetailActivity;
 import net.hosain.voat.data.Submission;
 import net.hosain.voat.data.Subverse;
 import net.hosain.voat.service.ApiService;

@@ -8,7 +8,7 @@
         android:id="@+id/detail_view_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="net.hosain.voat.activity.thread.DetailActivity" />
+        tools:context="net.hosain.voat.activity.submission.DetailActivity" />
 
     <FrameLayout
         android:id="@+id/comments_fragment_placeholder"

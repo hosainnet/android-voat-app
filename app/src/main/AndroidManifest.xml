@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.thread.DetailActivity"
+            android:name=".activity.submission.DetailActivity"
             android:label="@string/title_activity_detail"
             android:parentActivityName=".activity.subverse.SubverseActivity">
             <meta-data
