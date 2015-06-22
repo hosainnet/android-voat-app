@@ -13,7 +13,6 @@
     <FrameLayout
         android:id="@+id/comments_fragment_placeholder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:inflatedId="@+id/subTree" />
+        android:layout_height="match_parent" />
 
 </ViewSwitcher>
