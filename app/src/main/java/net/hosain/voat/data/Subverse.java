@@ -6,10 +6,10 @@ public class Subverse {
 
     public static Subverse MAIN;
 
-    private List<DataEntity> data;
+    private List<Submission> data;
     private boolean success;
 
-    public void setData(List<DataEntity> data) {
+    public void setData(List<Submission> data) {
         this.data = data;
     }
 
@@ -17,7 +17,7 @@ public class Subverse {
         this.success = success;
     }
 
-    public List<DataEntity> getData() {
+    public List<Submission> getData() {
         return data;
     }
 
@@ -25,12 +25,12 @@ public class Subverse {
         return success;
     }
 
-    public static DataEntity getThreadWithId(String id) {
-        List<DataEntity> data = MAIN.data;
+    public static Submission getThreadWithId(String id) {
+        List<Submission> data = MAIN.data;
         for (int i = 0; i < data.size(); i++) {
-            DataEntity dataEntity = data.get(i);
-            if (Integer.toString(dataEntity.getId()).equals(id)) {
-                return dataEntity;
+            Submission submission = data.get(i);
+            if (Integer.toString(submission.getId()).equals(id)) {
+                return submission;
             }
         }
         return null;

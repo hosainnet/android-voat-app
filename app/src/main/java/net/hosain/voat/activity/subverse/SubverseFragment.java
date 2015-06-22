@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
 import net.hosain.voat.activity.thread.DetailActivity;
-import net.hosain.voat.data.DataEntity;
+import net.hosain.voat.data.Submission;
 import net.hosain.voat.data.Subverse;
 import net.hosain.voat.service.ApiService;
 import net.hosain.voat.utils.DividerItemDecoration;
@@ -63,8 +63,8 @@ public class SubverseFragment extends Fragment {
                 new RecyclerItemClickListener(getActivity().getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        DataEntity dataEntity = Subverse.MAIN.getData().get(position);
-                        onItemSelected(Integer.toString(dataEntity.getId()));
+                        Submission submission = Subverse.MAIN.getData().get(position);
+                        onItemSelected(Integer.toString(submission.getId()));
                     }
                 })
         );

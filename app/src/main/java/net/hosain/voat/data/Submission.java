@@ -6,7 +6,7 @@ import java.net.URL;
 
 import timber.log.Timber;
 
-public class DataEntity {
+public class Submission {
 
     private static final int TYPE_SELF = 1;
     private static final int TYPE_LINK = 2;

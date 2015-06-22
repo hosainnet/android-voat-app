@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import net.hosain.voat.R;
 import net.hosain.voat.VoatApp;
-import net.hosain.voat.data.DataEntity;
+import net.hosain.voat.data.Submission;
 import net.hosain.voat.service.ImageService;
 
 import java.util.List;
@@ -18,12 +18,12 @@ import javax.inject.Inject;
 
 public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.DetailItemViewHolder> {
 
-    private List<DataEntity> mThreads;
+    private List<Submission> mThreads;
 
     @Inject
     ImageService imageService;
 
-    public SubverseAdapter(List<DataEntity> threads) {
+    public SubverseAdapter(List<Submission> threads) {
         this.mThreads = threads;
         VoatApp.component.inject(this);
     }
@@ -36,7 +36,7 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
 
     @Override
     public void onBindViewHolder(DetailItemViewHolder holder, int position) {
-        DataEntity currentThread = mThreads.get(position);
+        Submission currentThread = mThreads.get(position);
         imageService.loadThumbnail(currentThread.getThumbnail(), holder.mImageView);
         holder.mTitleView.setText(currentThread.getTitle());
         holder.mCommentCount.setText(Integer.toString(currentThread.getCommentCount()));

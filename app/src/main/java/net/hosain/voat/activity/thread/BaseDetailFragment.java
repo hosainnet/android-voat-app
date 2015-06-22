@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import net.hosain.voat.R;
-import net.hosain.voat.data.DataEntity;
+import net.hosain.voat.data.Submission;
 import net.hosain.voat.data.Subverse;
 
 public abstract class BaseDetailFragment extends Fragment {
 
-    DataEntity mItem;
+    Submission mItem;
 
     protected static Fragment newInstance(String threadId, Fragment fragment) {
         Bundle args = new Bundle();
