@@ -1,6 +1,7 @@
 package net.hosain.voat.activity.submission;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import net.hosain.voat.R;
 import net.hosain.voat.data.Submission;
@@ -19,6 +21,7 @@ import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -27,6 +30,12 @@ public class DetailActivity extends AppCompatActivity {
 
     @InjectView(R.id.toolbar)
     Toolbar mToolbar;
+
+    @InjectView(R.id.view_comments_button)
+    FloatingActionButton mViewCommentsButton;
+
+    @InjectView(R.id.view_web_link_button)
+    FloatingActionButton mViewWebLinkButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,10 @@ public class DetailActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), submissionId);
         mViewPager = (ViewPager) findViewById(R.id.detail_view_holder);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        if (submission.isLink()) {
+            mViewCommentsButton.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -68,6 +81,20 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @OnClick(R.id.view_comments_button)
+    public void viewCommentsOnClick(FloatingActionButton button) {
+        mViewPager.setCurrentItem(1);
+        button.setVisibility(View.GONE);
+        mViewWebLinkButton.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.view_web_link_button)
+    public void viewWebLinkButton(FloatingActionButton button) {
+        mViewPager.setCurrentItem(0);
+        button.setVisibility(View.GONE);
+        mViewCommentsButton.setVisibility(View.VISIBLE);
     }
 
     /**
