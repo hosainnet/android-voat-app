@@ -7,7 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -22,7 +23,7 @@ import java.util.Locale;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class DetailActivity extends ActionBarActivity implements ActionBar.TabListener {
+public class DetailActivity extends AppCompatActivity {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
@@ -33,6 +34,8 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
     @InjectView(R.id.comments_fragment_placeholder)
     FrameLayout mCommentsFragmentPlaceholder;
 
+    @InjectView(R.id.toolbar)
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,24 +44,23 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
 
         ButterKnife.inject(this);
 
-        // Set up the action bar.
+        setSupportActionBar(mToolbar);
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         String submissionId = getIntent().getStringExtra(Integer.toString(R.id.thread_id));
         Submission submission = Subverse.getSubmissionWithId(submissionId);
         setTitle(submission.getTitle());
 
         if (submission.isLink()) {
-            setupLinkView(actionBar, submissionId);
+            setupLinkView(mToolbar, submissionId);
         } else {
-            setupSelfView(actionBar, submissionId);
+            setupSelfView(mToolbar, submissionId);
         }
 
     }
 
-    private void setupSelfView(ActionBar actionBar, String submissionId) {
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+    private void setupSelfView(Toolbar mToolbar, String submissionId) {
 
         mDetailViewSwitcher.showNext();
 
@@ -69,8 +71,7 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
         fragmentTransaction.commit();
     }
 
-    private void setupLinkView(final ActionBar actionBar, String submissionId) {
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+    private void setupLinkView(final Toolbar mToolbar, String submissionId) {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -80,27 +81,6 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
         mViewPager = (ViewPager) findViewById(R.id.detail_view_holder);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        // When swiping between different sections, select the corresponding
-        // tab. We can also use ActionBar.Tab#select() to do this if we have
-        // a reference to the Tab.
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
-            }
-        });
-
-        // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-        }
     }
 
 
@@ -124,21 +104,6 @@ public class DetailActivity extends ActionBarActivity implements ActionBar.TabLi
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in
-        // the ViewPager.
-        mViewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
     /**
