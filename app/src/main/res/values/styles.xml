@@ -43,6 +43,13 @@
         <item name="android:textSize">@dimen/subverse_list_item_title</item>
     </style>
 
+    <style name="SubverseItemCommentsTextStyle" parent="SubverseItemTextStyle">
+        <item name="android:textSize">@dimen/subverse_list_item_title</item>
+        <item name="android:background">@drawable/ic_chat_bubble_outline_black_24dp</item>
+        <item name="android:minEms">2</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="SubverseItemMetadata">
         <item name="android:paddingTop">@dimen/subverse_list_item_metadata_padding</item>
         <item name="android:paddingBottom">@dimen/subverse_list_item_metadata_padding</item>
