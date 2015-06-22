@@ -5,7 +5,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +25,7 @@ import butterknife.OnClick;
 public class DetailActivity extends AppCompatActivity {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
-    ViewPager mViewPager;
+    CustomViewPager mViewPager;
 
     @InjectView(R.id.toolbar)
     Toolbar mToolbar;
@@ -53,7 +52,8 @@ public class DetailActivity extends AppCompatActivity {
         setTitle(submission.getTitle());
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), submissionId);
-        mViewPager = (ViewPager) findViewById(R.id.detail_view_holder);
+        mViewPager = (CustomViewPager) findViewById(R.id.detail_view_holder);
+        mViewPager.setPagingEnabled(false);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         if (submission.isLink()) {
