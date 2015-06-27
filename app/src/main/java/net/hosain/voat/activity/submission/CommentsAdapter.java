@@ -43,9 +43,9 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
         Comment currentComment = mTopLevelComments.get(position);
         ArrayList<Comment> childComments = currentComment.getChildComments(mComments);
 
-        TextView topLeveComment = (TextView) LayoutInflater.from(context).inflate(R.layout.fragment_comment, holder.mCommentsContainer, false);
-        topLeveComment.setText(Html.fromHtml(currentComment.getContent()));
-        holder.mCommentsContainer.addView(topLeveComment);
+        TextView topLevelComment = (TextView) LayoutInflater.from(context).inflate(R.layout.fragment_comment, holder.mCommentsContainer, false);
+        topLevelComment.setText(Html.fromHtml(currentComment.getContent()));
+        holder.mCommentsContainer.addView(topLevelComment);
 
         for (Comment comment : childComments) {
             TextView commentTextView = (TextView) LayoutInflater.from(context).inflate(R.layout.fragment_comment, holder.mCommentsContainer, false);
