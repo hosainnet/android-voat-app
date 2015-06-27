@@ -1,5 +1,6 @@
 package net.hosain.voat.di;
 
+import net.hosain.voat.activity.submission.CommentsAdapter;
 import net.hosain.voat.activity.submission.DetailCommentsFragment;
 import net.hosain.voat.activity.subverse.SubverseActivity;
 import net.hosain.voat.activity.subverse.SubverseAdapter;
@@ -14,6 +15,7 @@ import dagger.Component;
 @Component(modules = {AppModule.class})
 public interface AppComponent {
     void inject(SubverseActivity threadListActivity);
+
     void inject(SubverseFragment subverseFragment);
 
     void inject(DetailCommentsFragment detailCommentsFragment);
@@ -21,4 +23,6 @@ public interface AppComponent {
     void inject(ImageService imageService);
 
     void inject(SubverseAdapter subverseAdapter);
+
+    void inject(CommentsAdapter commentsAdapter);
 }

@@ -1,5 +1,8 @@
 package net.hosain.voat.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Comment {
 
     private String date;
@@ -13,7 +16,7 @@ public class Comment {
     private int downVotes;
     private String formattedContent;
     private int submissionID;
-    private int id;
+    private String id;
     private String subverse;
 
     public void setDate(String date) {
@@ -60,7 +63,7 @@ public class Comment {
         this.submissionID = submissionID;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -112,11 +115,22 @@ public class Comment {
         return submissionID;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     public String getSubverse() {
         return subverse;
+    }
+
+    public ArrayList<Comment> getChildComments(List<Comment> comments) {
+        ArrayList<Comment> childComments = new ArrayList<>();
+
+        for (Comment comment : comments) {
+            if (comment.level == 1 && comment.parentID.equals(id)) {
+                childComments.add(comment);
+            }
+        }
+        return childComments;
     }
 }
