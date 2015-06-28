@@ -76,6 +76,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
             TextView commentTextView = (TextView) LayoutInflater.from(context).inflate(R.layout.fragment_comment, linearLayout, false);
             Comment childComment = childNode.getData();
             commentTextView.setText(TextUtils.FromHtmlTrimmed(childComment.getFormattedContent()));
+            commentTextView.setBackgroundResource(R.drawable.border_left);
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) commentTextView.getLayoutParams();
             params.setMargins(20 * childComment.getLevel(), 0, 0, 0);
             commentTextView.setLayoutParams(params);
