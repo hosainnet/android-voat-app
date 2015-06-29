@@ -52,11 +52,19 @@ public class DetailCommentsFragment extends BaseDetailFragment {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
-        getComments(inflater, container);
+        setRetainInstance(true);
+
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState == null) {
+            getComments();
+        } else {
+            mRecyclerView.setAdapter(mCommentsAdapter);
+        }
+
         return view;
     }
 
-    private void getComments(final LayoutInflater inflater, final ViewGroup container) {
+    private void getComments() {
         mApiService.listComments(mItem.getSubverse(), mItem.getId(), new Callback<Discussion>() {
             @Override
             public void success(Discussion discussion, Response response) {

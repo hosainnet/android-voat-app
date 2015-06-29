@@ -49,10 +49,11 @@ public class SubverseFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_subverse_list, container, false);
         ButterKnife.inject(this, view);
 
-        if (savedInstanceState == null || Subverse.MAIN == null) {
+        setRetainInstance(true);
+
+        if (savedInstanceState == null) {
             getSubmissions("all");
         } else {
-            mSubverseAdapter = new SubverseAdapter(Subverse.MAIN.getData());
             mRecyclerView.setAdapter(mSubverseAdapter);
         }
 
