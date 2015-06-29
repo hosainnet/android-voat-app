@@ -1,6 +1,7 @@
 package net.hosain.voat.activity.submission;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import net.hosain.voat.data.Comment;
 import net.hosain.voat.data.Node;
 import net.hosain.voat.data.Tree;
 import net.hosain.voat.utils.TextUtils;
+import net.hosain.voat.utils.ViewUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,30 +64,42 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
         holder.mCommentsContainer.removeAllViews();
         Node<Comment> rootCommentNode = mTopLevelComments.get(position);
         LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.fragment_comments_container, holder.mCommentsContainer, false);
-        TextView rootCommentTextView = (TextView) LayoutInflater.from(context).inflate(R.layout.fragment_comment, holder.mCommentsContainer, false);
-        rootCommentTextView.setText(TextUtils.FromHtmlTrimmed(rootCommentNode.getData().getFormattedContent()));
+        TextView rootCommentTextView = createCommentTextView(linearLayout, rootCommentNode);
         linearLayout.addView(rootCommentTextView);
         addChildComments(rootCommentNode, linearLayout);
         holder.mCommentsContainer.addView(linearLayout);
     }
 
+
     private LinearLayout addChildComments(Node<Comment> node, LinearLayout linearLayout) {
         int childCount = node.getChildren().size();
         for (int i = 0; i < childCount; i++) {
             Node<Comment> childNode = node.getChildAt(i);
-            TextView commentTextView = (TextView) LayoutInflater.from(context).inflate(R.layout.fragment_comment, linearLayout, false);
-            Comment childComment = childNode.getData();
-            commentTextView.setText(TextUtils.FromHtmlTrimmed(childComment.getFormattedContent()));
-            commentTextView.setBackgroundResource(R.drawable.border_left);
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) commentTextView.getLayoutParams();
-            params.setMargins(20 * childComment.getLevel(), 0, 0, 0);
-            commentTextView.setLayoutParams(params);
+            TextView commentTextView = createChildCommentTextView(linearLayout, childNode);
             linearLayout.addView(commentTextView);
             if (childNode.getChildren().size() > 0) {
                 addChildComments(childNode, linearLayout);
             }
         }
         return linearLayout;
+    }
+
+    private TextView createCommentTextView(LinearLayout parent, Node<Comment> rootCommentNode) {
+        TextView rootCommentTextView = (TextView) LayoutInflater.from(context).inflate(R.layout.fragment_comment, parent, false);
+        rootCommentTextView.setText(TextUtils.FromHtmlTrimmed(rootCommentNode.getData().getFormattedContent()));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            rootCommentTextView.setElevation(ViewUtils.dpToPx((int) context.getResources().getDimension(R.dimen.comment_elevation)));
+        }
+        return rootCommentTextView;
+    }
+
+    private TextView createChildCommentTextView(LinearLayout linearLayout, Node<Comment> childNode) {
+        TextView commentTextView = createCommentTextView(linearLayout, childNode);
+        Comment childComment = childNode.getData();
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) commentTextView.getLayoutParams();
+        params.setMargins(ViewUtils.dpToPx((int) context.getResources().getDimension(R.dimen.comment_child_left_margin)) * childComment.getLevel(), ViewUtils.dpToPx((int) context.getResources().getDimension(R.dimen.comment_margin)), 0, ViewUtils.dpToPx((int) context.getResources().getDimension(R.dimen.comment_margin)));
+        commentTextView.setLayoutParams(params);
+        return commentTextView;
     }
 
     @Override

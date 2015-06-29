@@ -11,4 +11,9 @@
     <dimen name="subverse_list_item_metadata">12sp</dimen>
     <dimen name="subverse_list_item_metadata_padding">4dp</dimen>
 
+    <dimen name="comment_root_bottom_margin">2dp</dimen>
+    <dimen name="comment_child_left_margin">2dp</dimen>
+    <dimen name="comment_margin">1dp</dimen>
+    <dimen name="comment_elevation">1dp</dimen>
+
 </resources>
