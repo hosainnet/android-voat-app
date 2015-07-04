@@ -52,7 +52,7 @@ public class SubverseFragment extends Fragment {
         setRetainInstance(true);
 
         if (savedInstanceState == null) {
-            getSubmissions("all");
+            getSubmissions("_default");
         } else {
             mRecyclerView.setAdapter(mSubverseAdapter);
         }
