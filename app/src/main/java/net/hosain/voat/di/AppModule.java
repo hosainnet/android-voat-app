@@ -34,12 +34,7 @@ public class AppModule {
     @Singleton
     @Provides
     RequestInterceptor provideRequestInterceptor() {
-        return new RequestInterceptor() {
-            @Override
-            public void intercept(RequestFacade request) {
-                request.addHeader("Voat-ApiKey", VOAT_PUB_KEY);
-            }
-        };
+        return request -> request.addHeader("Voat-ApiKey", VOAT_PUB_KEY);
     }
 
     @Singleton

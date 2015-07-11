@@ -61,12 +61,9 @@ public class SubverseFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
         mRecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getActivity().getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Submission submission = Subverse.MAIN.getData().get(position);
-                        onItemSelected(Integer.toString(submission.getId()));
-                    }
+                new RecyclerItemClickListener(getActivity().getApplicationContext(), (view1, position) -> {
+                    Submission submission = Subverse.MAIN.getData().get(position);
+                    onItemSelected(Integer.toString(submission.getId()));
                 })
         );
 
