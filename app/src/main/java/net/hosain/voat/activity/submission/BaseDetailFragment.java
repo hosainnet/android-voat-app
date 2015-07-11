@@ -11,7 +11,7 @@ public abstract class BaseDetailFragment extends Fragment {
 
     Submission mItem;
 
-    protected static Fragment newInstance(String submissionId, Fragment fragment) {
+    static Fragment newInstance(String submissionId, Fragment fragment) {
         Bundle args = new Bundle();
         args.putString(Integer.toString(R.id.thread_id), submissionId);
         fragment.setArguments(args);

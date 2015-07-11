@@ -50,10 +50,10 @@ public class SubverseAdapter extends RecyclerView.Adapter<SubverseAdapter.Detail
 
     public static class DetailItemViewHolder extends RecyclerView.ViewHolder {
 
-        protected ImageView mImageView;
-        protected TextView mTitleView;
-        protected TextView mCommentCount;
-        protected TextView mMetadata;
+        ImageView mImageView;
+        TextView mTitleView;
+        TextView mCommentCount;
+        TextView mMetadata;
 
         public DetailItemViewHolder(View itemView) {
             super(itemView);

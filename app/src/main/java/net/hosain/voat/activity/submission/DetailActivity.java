@@ -24,8 +24,8 @@ import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
 
-    SectionsPagerAdapter mSectionsPagerAdapter;
-    CustomViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private CustomViewPager mViewPager;
 
     @InjectView(R.id.toolbar)
     Toolbar mToolbar;

@@ -61,7 +61,7 @@ public class Node<T> {
         return this.parent;
     }
 
-    public void setParent(Node<T> parent) {
+    void setParent(Node<T> parent) {
         this.parent = parent;
     }
 

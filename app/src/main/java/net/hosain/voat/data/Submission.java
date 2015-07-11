@@ -104,7 +104,7 @@ public class Submission {
         return upVotes;
     }
 
-    public String getUserName() {
+    private String getUserName() {
         return userName;
     }
 
@@ -156,11 +156,11 @@ public class Submission {
         return type == TYPE_LINK;
     }
 
-    public int getTotalVotes() {
+    private int getTotalVotes() {
         return upVotes - downVotes;
     }
 
-    public String getByLine() {
+    private String getByLine() {
         return "by " + getUserName();
     }
 
@@ -168,7 +168,7 @@ public class Submission {
         return getTotalVotes() + "  -  " + getDomain() + " " + getByLine();
     }
 
-    public String getDomain() {
+    private String getDomain() {
         if (isSelf()) {
             return "self." + getSubverse();
         } else {

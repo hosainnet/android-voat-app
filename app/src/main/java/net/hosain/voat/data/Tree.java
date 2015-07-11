@@ -30,7 +30,7 @@ public class Tree<T> {
         return getNumberOfDescendants(root) + 1;
     }
 
-    public int getNumberOfDescendants(Node<T> node) {
+    private int getNumberOfDescendants(Node<T> node) {
         int n = node.getChildren().size();
         for (Node<T> child : node.getChildren())
             n += getNumberOfDescendants(child);
@@ -93,7 +93,7 @@ public class Tree<T> {
         postOrder.add(node);
     }
 
-    public ArrayList<Node<T>> getLongestPathFromRootToAnyLeaf() {
+    private ArrayList<Node<T>> getLongestPathFromRootToAnyLeaf() {
         ArrayList<Node<T>> longestPath = null;
         int max = 0;
         for (ArrayList<Node<T>> path : getPathsFromRootToAnyLeaf()) {
@@ -109,7 +109,7 @@ public class Tree<T> {
         return getLongestPathFromRootToAnyLeaf().size();
     }
 
-    public ArrayList<ArrayList<Node<T>>> getPathsFromRootToAnyLeaf() {
+    private ArrayList<ArrayList<Node<T>>> getPathsFromRootToAnyLeaf() {
         ArrayList<ArrayList<Node<T>>> paths = new ArrayList<>();
         ArrayList<Node<T>> currentPath = new ArrayList<>();
         getPath(root, currentPath, paths);

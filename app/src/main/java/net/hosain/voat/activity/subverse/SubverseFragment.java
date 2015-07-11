@@ -70,7 +70,7 @@ public class SubverseFragment extends Fragment {
         return view;
     }
 
-    public void onItemSelected(String id) {
+    private void onItemSelected(String id) {
         Intent detailIntent = new Intent(getActivity(), DetailActivity.class);
         detailIntent.putExtra(Integer.toString(R.id.thread_id), id);
         startActivity(detailIntent);
