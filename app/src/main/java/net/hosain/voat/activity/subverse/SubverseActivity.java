@@ -53,6 +53,19 @@ public class SubverseActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         getDefaultSubverses();
+        setupDrawerItemsClickHandler();
+    }
+
+    private void setupDrawerItemsClickHandler() {
+        mNavigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
     }
 
     private void getDefaultSubverses() {
@@ -61,7 +74,6 @@ public class SubverseActivity extends AppCompatActivity {
             public void success(List<String> subverses, Response response) {
                 Menu menu = mNavigationView.getMenu();
                 for (String subverse : subverses) {
-                    Timber.d(subverse);
                     menu.add(R.id.drawer_navigation_view_group, Menu.NONE, Menu.NONE, subverse).setIcon(R.drawable.ic_web_white_24dp);
                 }
             }
