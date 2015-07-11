@@ -71,7 +71,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
     }
 
 
-    private LinearLayout addChildComments(Node<Comment> node, LinearLayout linearLayout) {
+    private void addChildComments(Node<Comment> node, LinearLayout linearLayout) {
         int childCount = node.getChildren().size();
         for (int i = 0; i < childCount; i++) {
             Node<Comment> childNode = node.getChildAt(i);
@@ -81,7 +81,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
                 addChildComments(childNode, linearLayout);
             }
         }
-        return linearLayout;
     }
 
     private TextView createCommentTextView(LinearLayout parent, Node<Comment> rootCommentNode) {

@@ -1,13 +1,9 @@
 <resources>
     <string name="app_name">Voat</string>
-    <string name="title_thread_detail">Thread Detail</string>
     <string name="title_activity_detail">DetailActivity</string>
 
     <string name="title_link">Link</string>
     <string name="title_comments">Comments</string>
 
-    <string name="hello_world">Hello world!</string>
-
     <string name="action_settings">Settings</string>
-    <string name="dash">-</string>
 </resources>

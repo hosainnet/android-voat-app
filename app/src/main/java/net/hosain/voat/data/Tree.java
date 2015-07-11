@@ -137,9 +137,9 @@ public class Tree<T> {
     }
 
     private ArrayList<Node<T>> clone(ArrayList<Node<T>> list) {
-        ArrayList<Node<T>> newList = new ArrayList<Node<T>>();
+        ArrayList<Node<T>> newList = new ArrayList<>();
         for (Node<T> node : list)
-            newList.add(new Node<T>(node));
+            newList.add(new Node<>(node));
 
         return newList;
     }

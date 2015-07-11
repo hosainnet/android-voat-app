@@ -14,7 +14,7 @@ public class Node<T> {
     }
 
     public Node(Node<T> node) {
-        this.data = (T) node.getData();
+        this.data = node.getData();
         children = new ArrayList<>();
     }
 

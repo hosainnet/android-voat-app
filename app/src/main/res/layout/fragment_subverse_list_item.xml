@@ -15,7 +15,8 @@
             android:id="@+id/subverse_item_image"
             style="@style/SubverseItemImageStyle"
             android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:contentDescription="@null" />
 
         <RelativeLayout
             android:layout_width="match_parent"

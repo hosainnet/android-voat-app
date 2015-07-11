@@ -24,7 +24,6 @@ import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
     private CustomViewPager mViewPager;
 
     @InjectView(R.id.toolbar)
@@ -51,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         Submission submission = Subverse.getSubmissionWithId(submissionId);
         setTitle(submission.getTitle());
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), submissionId);
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), submissionId);
         mViewPager = (CustomViewPager) findViewById(R.id.detail_view_holder);
         mViewPager.setPagingEnabled(false);
         mViewPager.setAdapter(mSectionsPagerAdapter);
