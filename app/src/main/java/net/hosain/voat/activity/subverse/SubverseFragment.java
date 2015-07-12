@@ -15,6 +15,7 @@ import net.hosain.voat.activity.submission.DetailActivity;
 import net.hosain.voat.data.Submission;
 import net.hosain.voat.data.Subverse;
 import net.hosain.voat.service.ApiService;
+import net.hosain.voat.utils.Constants;
 import net.hosain.voat.utils.DividerItemDecoration;
 import net.hosain.voat.utils.RecyclerItemClickListener;
 
@@ -29,7 +30,6 @@ import timber.log.Timber;
 
 public class SubverseFragment extends Fragment {
 
-    private SubverseAdapter mSubverseAdapter;
 
     @Inject
     ApiService mApiService;
@@ -37,10 +37,25 @@ public class SubverseFragment extends Fragment {
     @InjectView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
+    private SubverseAdapter mSubverseAdapter;
+    private String mSubverseId;
+
+    public static SubverseFragment newInstance(String subverseId) {
+        SubverseFragment subverseFragment = new SubverseFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.FRAGMENT_ARG_SUBVERSE_ID, subverseId);
+        subverseFragment.setArguments(bundle);
+        return subverseFragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VoatApp.component.inject(this);
+
+        if (getArguments() != null) {
+            mSubverseId = getArguments().getString(Constants.FRAGMENT_ARG_SUBVERSE_ID);
+        }
     }
 
     @Override
@@ -52,7 +67,7 @@ public class SubverseFragment extends Fragment {
         setRetainInstance(true);
 
         if (savedInstanceState == null) {
-            getSubmissions("_default");
+            getSubmissions(mSubverseId);
         } else {
             mRecyclerView.setAdapter(mSubverseAdapter);
         }

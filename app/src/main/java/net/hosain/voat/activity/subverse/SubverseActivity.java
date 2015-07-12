@@ -1,5 +1,6 @@
 package net.hosain.voat.activity.subverse;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -39,6 +40,8 @@ public class SubverseActivity extends AppCompatActivity {
     @InjectView(R.id.toolbar)
     Toolbar mToolbar;
 
+    List<String> defaultSubverses;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,12 @@ public class SubverseActivity extends AppCompatActivity {
 
         getDefaultSubverses();
         setupDrawerItemsClickHandler();
+        setupFragment("_default");
+    }
+
+    private void setupFragment(String subverseId) {
+        Fragment subverseFragment = SubverseFragment.newInstance(subverseId);
+        getFragmentManager().beginTransaction().add(R.id.subverse_fragment_container, subverseFragment, subverseId).commit();
     }
 
     private void setupDrawerItemsClickHandler() {
@@ -61,6 +70,7 @@ public class SubverseActivity extends AppCompatActivity {
                 menuItem -> {
                     menuItem.setChecked(true);
                     mDrawerLayout.closeDrawers();
+                    Timber.d(defaultSubverses.get(menuItem.getOrder()));
                     return true;
                 });
     }
@@ -69,9 +79,12 @@ public class SubverseActivity extends AppCompatActivity {
         mApiService.listDefaultSubverses(new Callback<List<String>>() {
             @Override
             public void success(List<String> subverses, Response response) {
+                defaultSubverses = subverses;
                 Menu menu = mNavigationView.getMenu();
+                int order = 0;
                 for (String subverse : subverses) {
-                    menu.add(R.id.drawer_navigation_view_group, Menu.NONE, Menu.NONE, subverse).setIcon(R.drawable.ic_web_white_24dp);
+                    menu.add(R.id.drawer_navigation_view_group, Menu.NONE, order, subverse).setIcon(R.drawable.ic_web_white_24dp);
+                    order++;
                 }
             }
 
